@@ -1,0 +1,12 @@
+FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/ca-bundle-oracle-client-base:v3
+
+COPY requirements.txt /
+RUN pip3 install -r /requirements.txt
+
+USER jovyan
+
+ENV NLS_LANG=NORWEGIAN_NORWAY.AL32UTF8
+
+COPY pipelines/pipeline-entrypoint-git.sh /pipeline-entrypoint-git.sh
+
+ENTRYPOINT ["/bin/bash", "/pipeline-entrypoint-git.sh"]

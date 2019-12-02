@@ -1,0 +1,37 @@
+FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/ca-bundle-oracle-client-base:v6
+
+RUN apt-get install fonts-humor-sans
+
+COPY fonts/xkcd-script.ttf /home/xkcd-script.ttf
+COPY requirements.txt /requirements.txt
+RUN pip3 install -r /requirements.txt
+
+COPY test /test
+
+RUN pip3 install /test/dataverk
+
+RUN pip3 show dataverk
+
+COPY notebooks/docker-entrypoint.sh /home/docker-entrypoint.sh
+ENV NLS_LANG=NORWEGIAN_NORWAY.AL32UTF8
+
+# Set vault envs
+ENV VKS_VAULT_ADDR https://vault.adeo.no
+ENV VKS_AUTH_PATH auth/kubernetes/prod/kubeflow/login
+ENV VKS_KV_PATH kv/prod/kubeflow
+ENV VKS_SECRET_DEST_PATH /var/run/secrets/nais.io/vault
+
+# Set dataverk envs
+ENV REQUESTS_CA_BUNDLE /etc/pki/tls/certs/ca-bundle.crt
+ENV SSL_CERT_FILE /etc/pki/tls/certs/ca-bundle.crt
+ENV DATAVERK_SECRETS_FROM_API True
+ENV DATAVERK_BUCKET_ENDPOINT https://dataverk-s3-api.nais.adeo.no
+
+# Set proxy envs
+ENV HTTP_PROXY "http://webproxy.nais:8088"
+ENV HTTPS_PROXY "http://webproxy.nais:8088"
+ENV NO_PROXY "localhost,127.0.0.1,10.254.0.1,.local,.adeo.no,.nav.no,.aetat.no,.devillo.no,.oera.no,.nais.io"
+
+USER jovyan
+
+# ENTRYPOINT ["tini", "--", "/home/docker-entrypoint.sh"]

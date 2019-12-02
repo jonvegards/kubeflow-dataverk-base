@@ -1,0 +1,26 @@
+FROM gcr.io/kubeflow-images-public/tensorflow-1.13.1-notebook-cpu:v0.5.0
+
+USER root
+
+# Install jupyter notebook extensions
+RUN pip3 install jupyter_contrib_nbextensions && jupyter contrib nbextension install
+
+# Install linux libraries
+RUN apt-get update && \
+    apt-get install -y alien && \
+    apt-get install -y libaio1 libaio-dev && \
+    apt-get install -y cmake libpq-dev && \
+    apt-get install -y nano
+
+# Install oracle client
+ADD base/oracle_client/oracle-instantclient18.3-basic-18.3.0.0.0-1.x86_64.rpm /tmp/
+RUN alien -i /tmp/oracle-instantclient18.3-basic-18.3.0.0.0-1.x86_64.rpm && \
+    rm -rf /var/cache/yum && \
+    rm -f /mp/oracle-instantclient18.3-basic-18.3.0.0.0-1.x86_64.rpm && \
+    echo /usr/lib/oracle/18.3/client64/lib > /etc/ld.so.conf.d/oracle-instantclient18.3.conf && \
+    ldconfig
+
+ENV PATH=$PATH:/usr/lib/oracle/18.3/client64/bin
+
+COPY ca_bundles/ca-bundle.crt /etc/pki/tls/certs/ca-bundle.crt
+COPY ca_bundles/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
