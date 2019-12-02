@@ -6,12 +6,6 @@ COPY fonts/xkcd-script.ttf /home/xkcd-script.ttf
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
 
-COPY test /test
-
-RUN pip3 install /test/dataverk
-
-RUN pip3 show dataverk
-
 COPY notebooks/docker-entrypoint.sh /home/docker-entrypoint.sh
 ENV NLS_LANG=NORWEGIAN_NORWAY.AL32UTF8
 
