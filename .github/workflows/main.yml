@@ -23,9 +23,9 @@ jobs:
         run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
       - name: Build notebook base docker image
         run: docker build -t ${IMAGE_NOTEBOOKS}:${IMAGE_TAG} -f notebooks/Dockerfile_notebooks .
-      - name: Build pipeline base docker image
-        run: docker build -t ${IMAGE_PIPELINES}:${IMAGE_TAG} -f pipelines/Dockerfile_pipelines .
       - name: Push notebook base docker image
         run: docker push ${IMAGE_NOTEBOOKS}:${IMAGE_TAG}
+      - name: Build pipeline base docker image
+        run: docker build -t ${IMAGE_PIPELINES}:${IMAGE_TAG} -f pipelines/Dockerfile_pipelines .
       - name: Push pipeline base docker image
         run: docker push ${IMAGE_PIPELINES}:${IMAGE_TAG}

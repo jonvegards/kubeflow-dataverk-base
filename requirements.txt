@@ -7,6 +7,7 @@ dataverk-tools==0.0.10
 distributed==2.0.1
 flashtext==2.7.0
 geopandas==0.5.1
+requests==2.22.0
 python-google-places==1.4.1
 h3==3.4.3
 intake==0.5.1
