@@ -6,7 +6,6 @@ COPY fonts/xkcd-script.ttf /home/xkcd-script.ttf
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
 
-COPY notebooks/docker-entrypoint.sh /home/docker-entrypoint.sh
 ENV NLS_LANG=NORWEGIAN_NORWAY.AL32UTF8
 
 # Set vault envs
@@ -28,11 +27,8 @@ ENV HTTP_PROXY "http://webproxy.nais:8088"
 ENV HTTPS_PROXY "http://webproxy.nais:8088"
 ENV NO_PROXY "localhost,127.0.0.1,10.254.0.1,.local,.adeo.no,.nav.no,.aetat.no,.devillo.no,.oera.no,.nais.io"
 
-RUN mkdir /home/entrypoint
-COPY notebooks/docker-entrypoint.sh /home/entrypoint/docker-entrypoint.sh
-RUN chown jovyan:users /home/entrypoint && \
-    chown jovyan:users /home/entrypoint/docker-entrypoint.sh
-
 USER jovyan
 
-ENTRYPOINT ["tini", "--", "/home/entrypoint/docker-entrypoint.sh"]
+COPY notebooks/docker-entrypoint.sh /home/entrypoint.sh
+
+ENTRYPOINT ["tini", "--", "/home/entrypoint.sh"]

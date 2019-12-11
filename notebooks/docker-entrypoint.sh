@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 export APPLICATION_NAME=$(cat "${K8S_SERVICEACCOUNT_PATH}/namespace")
