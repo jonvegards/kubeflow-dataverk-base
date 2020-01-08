@@ -1,9 +1,6 @@
 name: build
 
-on:
-  push:
-    branches:
-      - master
+on: push
 
 env:
   IMAGE_NOTEBOOKS: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-base
