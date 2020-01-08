@@ -7,6 +7,7 @@ on:
 
 env:
   IMAGE_NOTEBOOKS: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-base
+  IMAGE_JUPYTERLAB: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-base-jupyterlab
   IMAGE_PIPELINES: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-pipeline
 
 jobs:
@@ -25,6 +26,10 @@ jobs:
         run: docker build -t ${IMAGE_NOTEBOOKS}:${IMAGE_TAG} -f notebooks/Dockerfile_notebooks .
       - name: Push notebook base docker image
         run: docker push ${IMAGE_NOTEBOOKS}:${IMAGE_TAG}
+      - name: Build jupyterhub base docker image
+        run: docker build -t ${IMAGE_JUPYTERLAB}:${IMAGE_TAG} -f notebooks/Dockerfile_jupyterlab .
+      - name: Push jupyterhub base docker image
+        run: docker push ${IMAGE_JUPYTERLAB}:${IMAGE_TAG}
       - name: Build pipeline base docker image
         run: docker build -t ${IMAGE_PIPELINES}:${IMAGE_TAG} -f pipelines/Dockerfile_pipelines .
       - name: Push pipeline base docker image
