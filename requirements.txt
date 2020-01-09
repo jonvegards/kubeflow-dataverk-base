@@ -17,7 +17,7 @@ jupyterlab==1.2.4
 keplergl==0.1.0a8
 kfp==0.1.38
 MIDIUtil==1.2.1
-nada-dataprofilering==0.1.0
+nada-dataprofilering==0.1.1
 nbconvert==5.5.0
 nbstripout==0.3.6
 networkx==2.3.0
