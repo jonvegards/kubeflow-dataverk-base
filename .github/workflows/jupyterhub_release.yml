@@ -1,0 +1,26 @@
+name: build
+
+on:
+  release:
+    tags:
+      - 'jh*'
+
+env:
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-jupyterhub
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Create tag
+        run: echo ::set-env name=IMAGE_TAG::$(git describe --tags)
+      - name: Login to Github package registry
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+      - name: Build jupyterhub docker image
+        run: docker build -t ${IMAGE}:${IMAGE_TAG} -f notebooks/Dockerfile_notebooks .
+      - name: Push jupyterhub docker image
+        run: docker push ${IMAGE}:${IMAGE_TAG}
