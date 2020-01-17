@@ -3,8 +3,9 @@ name: build
 on:
   release:
     types: [published]
-    tags:
-      - 'pl*'
+    tags-ignore:
+      - 'jh*'
+      - 'jl*'
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-pipelines
