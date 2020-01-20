@@ -1,5 +1,3 @@
-[![CircleCI](https://circleci.com/gh/navikt/kubeflow-dataverk-base.svg?style=svg&circle-token=43466846a4decdb98057323a66858252dce6dcfb)](https://circleci.com/gh/navikt/kubeflow-dataverk-base)
-
 # kubeflow-dataverk-base
 Base docker image for jupyterhub servers in kubeflow
 

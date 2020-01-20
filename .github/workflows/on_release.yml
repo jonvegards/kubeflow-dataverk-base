@@ -23,9 +23,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-      - name: Build notebook base docker image
+      - name: Build jupyterhub base docker image
         run: docker build -t ${IMAGE_JUPYTERHUB}:${IMAGE_TAG} -f notebooks/Dockerfile_notebooks .
-      - name: Push notebook base docker image
+      - name: Push jupyterhub base docker image
         run: docker push ${IMAGE_JUPYTERHUB}:${IMAGE_TAG}
 
   build-jupyterlab-image:
@@ -41,9 +41,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-      - name: Build jupyterhub base docker image
+      - name: Build jupyterlab base docker image
         run: docker build -t ${IMAGE_JUPYTERLAB}:${IMAGE_TAG} -f notebooks/Dockerfile_jupyterlab .
-      - name: Push jupyterhub base docker image
+      - name: Push jupyterlab base docker image
         run: docker push ${IMAGE_JUPYTERLAB}:${IMAGE_TAG}
 
   build-pipeline-image:
