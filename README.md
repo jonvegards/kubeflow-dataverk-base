@@ -1,3 +1,5 @@
+![](https://github.com/navikt/kubeflow-dataverk-base/workflows/Build%20kubeflow%20base%20image/badge.svg)
+
 # kubeflow-dataverk-base
 Base docker image for jupyterhub servers in kubeflow
 
