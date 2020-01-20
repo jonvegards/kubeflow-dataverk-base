@@ -1,0 +1,65 @@
+name: Build kubeflow base image
+
+on:
+  release:
+    types: [published]
+
+env:
+  IMAGE_JUPYTERHUB: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-jupyterhub
+  IMAGE_JUPYTERLAB: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-jupyterlab
+  IMAGE_PIPELINES: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-pipeline
+
+jobs:
+  build-jupyterhub-image:
+    name: Build jupyterhub docker image
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/jupyterhub')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Create tag
+        run: echo ::set-env name=IMAGE_TAG::$(date +%Y-%m-%d)--$(git describe --tags)
+      - name: Login to Github package registry
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+      - name: Build notebook base docker image
+        run: docker build -t ${IMAGE_JUPYTERHUB}:${IMAGE_TAG} -f notebooks/Dockerfile_notebooks .
+      - name: Push notebook base docker image
+        run: docker push ${IMAGE_JUPYTERHUB}:${IMAGE_TAG}
+
+  build-jupyterlab-image:
+    name: Build jupyterlab docker image
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/jupyterlab')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Create tag
+        run: echo ::set-env name=IMAGE_TAG::$(date +%Y-%m-%d)--$(git describe --tags)
+      - name: Login to Github package registry
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+      - name: Build jupyterhub base docker image
+        run: docker build -t ${IMAGE_JUPYTERLAB}:${IMAGE_TAG} -f notebooks/Dockerfile_jupyterlab .
+      - name: Push jupyterhub base docker image
+        run: docker push ${IMAGE_JUPYTERLAB}:${IMAGE_TAG}
+
+  build-pipeline-image:
+    name: Build kubeflow pipeline docker image
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/pipeline')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Create tag
+        run: echo ::set-env name=IMAGE_TAG::$(date +%Y-%m-%d)--$(git describe --tags)
+      - name: Login to Github package registry
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+      - name: Build pipeline base docker image
+        run: docker build -t ${IMAGE_PIPELINES}:${IMAGE_TAG} -f pipelines/Dockerfile_pipelines .
+      - name: Push pipeline base docker image
+        run: docker push ${IMAGE_PIPELINES}:${IMAGE_TAG}
