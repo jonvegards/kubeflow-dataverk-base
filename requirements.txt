@@ -40,3 +40,4 @@ openpyxl==3.0.1
 jupyterlab-git==0.9.0
 dvc==0.83.0
 tfx==0.15.0
+pandas-profiling==2.4.0
