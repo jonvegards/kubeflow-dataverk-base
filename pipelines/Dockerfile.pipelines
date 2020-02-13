@@ -9,4 +9,23 @@ ENV NLS_LANG=NORWEGIAN_NORWAY.AL32UTF8
 
 COPY pipelines/pipeline-entrypoint-git.sh /pipeline-entrypoint-git.sh
 
+# Set vault envs
+ENV VKS_VAULT_ADDR https://vault.adeo.no
+ENV VKS_AUTH_PATH auth/kubernetes/prod/kubeflow/login
+ENV VKS_KV_PATH kv/prod/kubeflow
+ENV VKS_SECRET_DEST_PATH /var/run/secrets/nais.io/vault
+ENV K8S_SERVICEACCOUNT_PATH /var/run/secrets/kubernetes.io/serviceaccount
+
+# Set dataverk envs
+ENV REQUESTS_CA_BUNDLE /etc/pki/tls/certs/ca-bundle.crt
+ENV SSL_CERT_FILE /etc/pki/tls/certs/ca-bundle.crt
+ENV DATAVERK_SECRETS_FROM_API True
+ENV DATAVERK_BUCKET_ENDPOINT https://dv-resource-rw-api.nais.adeo.no
+ENV DATAVERK_API_ENDPOINT https://dv-resource-rw-api.nais.adeo.no
+
+# Set proxy envs
+ENV HTTP_PROXY "http://webproxy.nais:8088"
+ENV HTTPS_PROXY "http://webproxy.nais:8088"
+ENV NO_PROXY "localhost,127.0.0.1,10.254.0.1,.local,.adeo.no,.nav.no,.aetat.no,.devillo.no,.oera.no,.nais.io"
+
 ENTRYPOINT ["/bin/bash", "/pipeline-entrypoint-git.sh"]
