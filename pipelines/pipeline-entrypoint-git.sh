@@ -20,4 +20,4 @@ git clone https://${GH_USER}:${GH_TOKEN}@github.com/${GIT_REPO} datapackages
 
 cd datapackages
 
-papermill "${NOTEBOOK_NAME}" output.ipynb
+papermill "${NOTEBOOK_NAME}" output.ipynb --log-output
