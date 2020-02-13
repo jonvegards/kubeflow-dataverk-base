@@ -8,7 +8,7 @@ Det finnes tre ulike imager:
     - base image med jupyterhub miljø
 2. kubeflow-dataverk-jupyterlab:<tag>
     - base image med jupyterlab miljø
-3. Pipeline
+3. kubeflow-dataverk-pipeline
     - base image for å kjøre schedulerte jupyter notebooks som en kubeflow pipeline
 
 # Legge til pakker
