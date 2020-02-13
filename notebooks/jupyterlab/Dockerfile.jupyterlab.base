@@ -1,0 +1,16 @@
+FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/ca-bundle-oracle-client-base:v7
+
+RUN apt-get install fonts-humor-sans
+COPY fonts/xkcd-script.ttf /home/xkcd-script.ttf
+
+RUN apt-get update && \
+    apt-get install -y nodejs && \
+    curl -L https://npmjs.org/install.sh | sh
+
+RUN pip3 install ipyleaflet && \
+    jupyter nbextension enable --py --sys-prefix ipyleaflet && \
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+RUN jupyter labextension install jupyter-leaflet
+RUN jupyter labextension install plotlywidget@1.1
+RUN jupyter labextension install @jupyterlab/plotly-extension

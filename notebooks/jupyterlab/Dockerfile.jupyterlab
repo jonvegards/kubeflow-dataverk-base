@@ -1,22 +1,7 @@
-FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/ca-bundle-oracle-client-base:v6
+FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/kubeflow-dataverk-jupyterlab-base:v1
 
-RUN apt-get install fonts-humor-sans
-
-COPY fonts/xkcd-script.ttf /home/xkcd-script.ttf
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
-
-RUN apt-get update && \
-    apt-get install -y nodejs && \
-    curl -L https://npmjs.org/install.sh | sh
-
-RUN pip3 install ipyleaflet && \
-    jupyter nbextension enable --py --sys-prefix ipyleaflet && \
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager
-
-RUN jupyter labextension install jupyter-leaflet
-RUN jupyter labextension install plotlywidget@1.1
-RUN jupyter labextension install @jupyterlab/plotly-extension
 
 ENV NLS_LANG=NORWEGIAN_NORWAY.AL32UTF8
 
@@ -39,7 +24,7 @@ ENV HTTP_PROXY "http://webproxy.nais:8088"
 ENV HTTPS_PROXY "http://webproxy.nais:8088"
 ENV NO_PROXY "localhost,127.0.0.1,10.254.0.1,.local,.adeo.no,.nav.no,.aetat.no,.devillo.no,.oera.no,.nais.io"
 
-COPY notebooks/docker-entrypoint-jupyterlab.sh /home/entrypoint.sh
+COPY notebooks/jupyterlab/docker-entrypoint-jupyterlab.sh /home/entrypoint.sh
 RUN chmod +x /home/entrypoint.sh
 
 USER jovyan

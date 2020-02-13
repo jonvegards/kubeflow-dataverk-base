@@ -10,13 +10,10 @@ geopandas==0.5.1
 requests==2.22.0
 python-google-places==1.4.1
 h3==3.4.3
-intake==0.5.1
-intake-sql==0.2.0
 jupyter==1.0.0
 jupyterlab==1.2.4
 keplergl==0.1.0a8
 kfp==0.1.38
-kubeflow-kale==0.4.0
 MIDIUtil==1.2.1
 nada-dataprofilering==1.0.5
 nbconvert==5.5.0
