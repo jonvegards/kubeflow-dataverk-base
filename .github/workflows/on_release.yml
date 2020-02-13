@@ -33,7 +33,7 @@ jobs:
   build-jupyterlab-base-image:
     name: Build jupyterlab docker image
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/jupyterlab-base')
+    if: startsWith(github.ref, 'refs/tags/base-jupyterlab')
     steps:
       - name: Checkout
         uses: actions/checkout@master
