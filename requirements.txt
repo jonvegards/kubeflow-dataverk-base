@@ -10,6 +10,7 @@ geopandas==0.5.1
 requests==2.22.0
 python-google-places==1.4.1
 h3==3.4.3
+ibm-db==3.0.1
 jupyter==1.0.0
 jupyterlab==1.2.4
 keplergl==0.1.0a8
