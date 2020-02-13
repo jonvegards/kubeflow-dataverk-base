@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/ca-bundle-oracle-client-base:v7
+FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/ca-bundle-oracle-client-base:2020-02-13--ca-oracle-base0.0.2
 
 RUN apt-get install fonts-humor-sans
 COPY fonts/xkcd-script.ttf /home/xkcd-script.ttf
