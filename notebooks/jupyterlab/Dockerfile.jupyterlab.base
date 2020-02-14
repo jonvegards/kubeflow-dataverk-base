@@ -14,3 +14,4 @@ RUN pip3 install ipyleaflet && \
 RUN jupyter labextension install jupyter-leaflet
 RUN jupyter labextension install plotlywidget@1.1
 RUN jupyter labextension install @jupyterlab/plotly-extension
+RUN jupyter labextension install keplergl-jupyter
