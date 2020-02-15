@@ -5,49 +5,11 @@ on:
     types: [published]
 
 env:
-  IMAGE_BASE: docker.pkg.github.com/${{ github.repository }}/ca-bundle-oracle-client-base
-  IMAGE_JUPYTERLAB_BASE: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-jupyterlab-base
-  IMAGE_JUPYTERLAB: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-jupyterlab
-  IMAGE_JUPYTERHUB: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-jupyterhub
-  IMAGE_PIPELINES: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-pipeline
+  IMAGE_JUPYTERLAB: navikt/kubeflow-dataverk-jupyterlab
+  IMAGE_JUPYTERHUB: navikt/kubeflow-dataverk-jupyterhub
+  IMAGE_PIPELINES: navikt/kubeflow-dataverk-pipeline
 
 jobs:
-  build-ca-bundle-oracle-client-base:
-    name: Build base image with oracle client and ca-bundle
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/ca-oracle-base')
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Create tag
-        run: echo ::set-env name=IMAGE_TAG::$(date +%Y-%m-%d)--$(git describe --tags)
-      - name: Login to Github package registry
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-      - name: Build jupyterlab base docker image
-        run: docker build -t ${IMAGE_BASE}:${IMAGE_TAG} -f base/Dockerfile.caBundle.base .
-      - name: Push jupyterlab base docker image
-        run: docker push ${IMAGE_BASE}:${IMAGE_TAG}
-
-  build-jupyterlab-base-image:
-    name: Build jupyterlab docker image
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/base-jupyterlab')
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Create tag
-        run: echo ::set-env name=IMAGE_TAG::$(date +%Y-%m-%d)--$(git describe --tags)
-      - name: Login to Github package registry
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-      - name: Build jupyterlab base docker image
-        run: docker build -t ${IMAGE_JUPYTERLAB_BASE}:${IMAGE_TAG} -f notebooks/jupyterlab/Dockerfile.jupyterlab.base .
-      - name: Push jupyterlab base docker image
-        run: docker push ${IMAGE_JUPYTERLAB_BASE}:${IMAGE_TAG}
-
   build-jupyterlab-image:
     name: Build jupyterlab docker image
     runs-on: ubuntu-latest
@@ -63,6 +25,8 @@ jobs:
         run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
       - name: Build jupyterlab base docker image
         run: docker build -t ${IMAGE_JUPYTERLAB}:${IMAGE_TAG} -f notebooks/jupyterlab/Dockerfile.jupyterlab .
+      - name: Login Dockerhub
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Push jupyterlab base docker image
         run: docker push ${IMAGE_JUPYTERLAB}:${IMAGE_TAG}
 
