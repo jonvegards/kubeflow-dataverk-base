@@ -24,3 +24,8 @@ ENV PATH=$PATH:/usr/lib/oracle/18.3/client64/bin
 
 COPY ca_bundles/ca-bundle.crt /etc/pki/tls/certs/ca-bundle.crt
 COPY ca_bundles/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
+
+RUN apt-get install fonts-humor-sans
+COPY fonts/xkcd-script.ttf /home/xkcd-script.ttf
+
+pip3 install jupyter==1.0.0

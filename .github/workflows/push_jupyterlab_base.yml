@@ -36,7 +36,7 @@ jobs:
       uses: actions/checkout@master
     - name: Edit Dockerfiles
       run: |
-        sed -i "s~.*$IMAGE.*~FROM $IMAGE:$IMAGE_TAG~g" notebooks/jupyterlab/Dockerfile.jupyterlab
+        sed -i "s~.*$IMAGE.*~FROM $IMAGE:$IMAGE_TAG~g" notebooks/jupyterlab/kubeflow/Dockerfile.jupyterlab
     - name: Commit to repo
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/kubeflow-dataverk-jupyterlab-base:2020-02-14--base-jupyterlab0.2.6
+FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/kubeflow-dataverk-jupyterlab-base:testversjon5
 
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
@@ -26,6 +26,7 @@ ENV NO_PROXY "localhost,127.0.0.1,10.254.0.1,.local,.adeo.no,.nav.no,.aetat.no,.
 
 COPY notebooks/jupyterlab/docker-entrypoint-jupyterlab.sh /home/entrypoint.sh
 RUN chmod +x /home/entrypoint.sh
+RUN chown jovyan:users /usr/local/lib/python3.6/dist-packages/clidriver/license
 
 USER jovyan
 
