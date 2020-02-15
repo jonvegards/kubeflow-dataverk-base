@@ -45,6 +45,8 @@ jobs:
         run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
       - name: Build jupyterhub base docker image
         run: docker build -t ${IMAGE_JUPYTERHUB}:${IMAGE_TAG} -f notebooks/jupyterhub/Dockerfile.jupyterhub .
+      - name: Login Dockerhub
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Push jupyterhub base docker image
         run: docker push ${IMAGE_JUPYTERHUB}:${IMAGE_TAG}
 
@@ -63,5 +65,7 @@ jobs:
         run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
       - name: Build pipeline base docker image
         run: docker build -t ${IMAGE_PIPELINES}:${IMAGE_TAG} -f pipelines/Dockerfile.pipelines .
+      - name: Login Dockerhub
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Push pipeline base docker image
         run: docker push ${IMAGE_PIPELINES}:${IMAGE_TAG}
