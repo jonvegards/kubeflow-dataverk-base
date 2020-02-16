@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/ca-bundle-oracle-client-base:2020-02-13--ca-oracle-base0.0.2
+FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/ca-bundle-oracle-client-base:2e27ff9c9afa272cf76c497b9bce0a005b5e0024
 
 RUN apt-get update && \
     apt-get install -y nodejs && \

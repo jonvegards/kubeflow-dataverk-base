@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/ca-bundle-oracle-client-base:v6
+FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/ca-bundle-oracle-client-base:2e27ff9c9afa272cf76c497b9bce0a005b5e0024
 
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
