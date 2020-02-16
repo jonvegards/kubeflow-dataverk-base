@@ -47,4 +47,4 @@ jobs:
         git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
         git checkout master
         git add notebooks/
-        git diff --quiet && git diff --staged --quiet || (git commit -m "$COMMIT_MSG"; git push origin master)
+        git diff --quiet && git diff --staged --quiet || (git pull origin master; git commit -m "$COMMIT_MSG"; git push origin master)
