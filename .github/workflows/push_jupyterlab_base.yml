@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - 'notebooks/jupyterlab/base/**'
+      - '.github/workflows/push_jupyterlab_base.yml'
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/kubeflow-dataverk-jupyterlab-base
