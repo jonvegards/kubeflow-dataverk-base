@@ -85,7 +85,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
     - name: Build pipeline base docker image
-      run: docker build -t ${IMAGE_LOCAL}:${IMAGE_TAG} -f jupyterlab/local/Dockerfile.jupyterlab.local .
+      run: docker build -t ${IMAGE_LOCAL}:${IMAGE_TAG} -f notebooks/jupyterlab/local/Dockerfile.jupyterlab.local .
     - name: Login Dockerhub
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Push pipeline base docker image
