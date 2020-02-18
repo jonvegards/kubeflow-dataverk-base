@@ -19,7 +19,7 @@ ENV DATAVERK_SECRETS_FROM_API True
 ENV DATAVERK_BUCKET_ENDPOINT https://dv-resource-rw-api.nais.adeo.no
 ENV DATAVERK_API_ENDPOINT https://dv-resource-rw-api.nais.adeo.no
 
-COPY notebooks/jupyterlab/docker-entrypoint-jupyterlab.sh /home/entrypoint.sh
+COPY notebooks/jupyterlab/local/docker-entrypoint-jupyterlab.sh /home/entrypoint.sh
 RUN chmod +x /home/entrypoint.sh
 RUN chown jovyan:users /usr/local/lib/python3.6/dist-packages/clidriver/license
 
