@@ -8,6 +8,7 @@ env:
   IMAGE_JUPYTERLAB: navikt/kubeflow-dataverk-jupyterlab
   IMAGE_JUPYTERHUB: navikt/kubeflow-dataverk-jupyterhub
   IMAGE_PIPELINES: navikt/kubeflow-dataverk-pipeline
+  IMAGE_LOCAL: navikt/kubeflow-dataverk-local
 
 jobs:
   build-jupyterlab-image:
