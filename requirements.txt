@@ -41,3 +41,4 @@ jupyterlab-git==0.9.0
 dvc==0.83.0
 tfx==0.15.0
 pandas-profiling==2.4.0
+tensorflow-data-validation==0.21.1
