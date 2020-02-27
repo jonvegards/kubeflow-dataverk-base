@@ -3,8 +3,7 @@ import kfp.dsl as dsl
 
 # a single-op pipeline that runs the dataverk notebook
 @dsl.pipeline(name='Test', description='Execute test ml pipeline')
-def notebook_pipeline(github_repo=dsl.PipelineParam('github-repo'),
-                      notebook_name=dsl.PipelineParam('notebook-name')):
+def notebook_pipeline(github_repo, notebook_name):
 
     notebookop = dsl.ContainerOp(
       name='execute_notebook',
