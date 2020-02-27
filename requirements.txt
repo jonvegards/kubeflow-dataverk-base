@@ -14,7 +14,7 @@ ibm-db==3.0.1
 ibm-db-sa==0.3.5
 keplergl==0.1.0a8
 kfp==0.1.38
-koala-crawler==0.0.2
+koala-crawler==0.0.3
 koala-publisher==0.0.1
 MIDIUtil==1.2.1
 nada-dataprofilering==1.0.13
@@ -41,3 +41,4 @@ dvc==0.83.0
 tfx==0.15.0
 pandas-profiling==2.5.0
 tensorflow-data-validation==0.21.1
+
