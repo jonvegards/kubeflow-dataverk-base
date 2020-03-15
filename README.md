@@ -1,4 +1,4 @@
-![](https://github.com/navikt/kubeflow-api/workflows/build%20and%20deploy/badge.svg)
+![](https://github.com/navikt/kubeflow-dataverk-base/workflows/Release%20kubeflow%20base%20image/badge.svg)
 
 # kubeflow-dataverk-base
 Base docker images for notebook servers i kubeflow. 

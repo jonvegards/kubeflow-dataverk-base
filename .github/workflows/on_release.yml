@@ -1,4 +1,4 @@
-name: Build kubeflow base image
+name: Release kubeflow base image
 
 on:
   release:
