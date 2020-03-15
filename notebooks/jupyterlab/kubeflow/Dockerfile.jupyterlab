@@ -16,8 +16,8 @@ ENV K8S_SERVICEACCOUNT_PATH /var/run/secrets/kubernetes.io/serviceaccount
 ENV REQUESTS_CA_BUNDLE /etc/pki/tls/certs/ca-bundle.crt
 ENV SSL_CERT_FILE /etc/pki/tls/certs/ca-bundle.crt
 ENV DATAVERK_SECRETS_FROM_API True
-ENV DATAVERK_BUCKET_ENDPOINT https://dv-resource-rw-api.nais.adeo.no
-ENV DATAVERK_API_ENDPOINT https://dv-resource-rw-api.nais.adeo.no
+ENV DATAVERK_BUCKET_ENDPOINT https://dv-resource-rw-api.nais.adeo.no/storage
+ENV DATAVERK_API_ENDPOINT https://dv-resource-rw-api.nais.adeo.no/storage
 
 # Set proxy envs
 ENV HTTP_PROXY "http://webproxy.nais:8088"
