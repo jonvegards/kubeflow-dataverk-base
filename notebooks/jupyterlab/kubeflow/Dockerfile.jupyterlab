@@ -26,7 +26,6 @@ ENV NO_PROXY "localhost,127.0.0.1,10.254.0.1,.local,.adeo.no,.nav.no,.aetat.no,.
 
 COPY notebooks/jupyterlab/docker-entrypoint-jupyterlab.sh /home/entrypoint.sh
 RUN chmod +x /home/entrypoint.sh
-RUN chown jovyan:users /usr/local/lib/python3.6/dist-packages/clidriver/license
 
 USER jovyan
 
