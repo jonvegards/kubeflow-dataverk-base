@@ -17,7 +17,7 @@ ENV REQUESTS_CA_BUNDLE /etc/pki/tls/certs/ca-bundle.crt
 ENV SSL_CERT_FILE /etc/pki/tls/certs/ca-bundle.crt
 ENV DATAVERK_SECRETS_FROM_API True
 ENV DATAVERK_BUCKET_ENDPOINT https://dv-resource-rw-api.nais.adeo.no/storage
-ENV DATAVERK_API_ENDPOINT https://dv-resource-rw-api.nais.adeo.no/storage
+ENV DATAVERK_API_ENDPOINT https://data.adeo.no/api
 
 # Set proxy envs
 ENV HTTP_PROXY "http://webproxy.nais:8088"
