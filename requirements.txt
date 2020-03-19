@@ -42,3 +42,4 @@ tfx==0.15.0
 pandas-profiling==2.5.0
 tensorflow-data-validation==0.21.1
 protobuf==3.11.3
+awscli==1.18.23
