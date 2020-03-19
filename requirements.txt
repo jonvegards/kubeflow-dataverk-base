@@ -6,6 +6,7 @@ dataverk==0.2.11
 dataverk-tools==0.0.10
 dataverk-vault==0.1.4
 distributed==2.0.1
+fasttext==0.9.1
 flashtext==2.7.0
 geopandas==0.5.1
 gremlinpython==3.4.6
@@ -31,6 +32,7 @@ pyLDAvis==2.1.2
 pyyaml==5.3
 scipy==1.3.0
 scikit-learn==0.21.2
+spacy==2.2.4
 tblib==1.4.0
 tensorflow==2.1.0
 vega==2.6.0
