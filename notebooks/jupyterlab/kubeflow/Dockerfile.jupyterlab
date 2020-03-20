@@ -3,6 +3,9 @@ FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/kubeflow-dataverk-jupyt
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
 
+RUN python3 -m spacy download en_core_web_sm && \
+    python3 -m spacy download nb_core_news_sm
+
 ENV NLS_LANG=NORWEGIAN_NORWAY.AL32UTF8
 
 # Set vault envs
