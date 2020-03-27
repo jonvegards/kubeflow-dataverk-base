@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/kubeflow-dataverk-jupyterlab-base:9814f38a8106fcfe559d3c7721416928df8f67c1
+FROM docker.pkg.github.com/navikt/kubeflow-dataverk-base/kubeflow-dataverk-jupyterlab-base:f6ada48b44c1d6703a9c238d1d0f6a481f0a1d6d
 
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
