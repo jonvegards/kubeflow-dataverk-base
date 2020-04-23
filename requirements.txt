@@ -3,7 +3,7 @@ brreg==1.0.0a1
 dask==2.0.0
 dask-kubernetes==0.9.0
 dataverk==0.2.11
-dataverk-tools==0.0.10
+dataverk-tools==0.1.1
 dataverk-vault==0.1.4
 distributed==2.0.1
 fasttext==0.9.1
@@ -45,3 +45,4 @@ pandas-profiling==2.5.0
 tensorflow-data-validation==0.21.1
 protobuf==3.11.3
 awscli==1.18.23
+xmlschema==1.12
